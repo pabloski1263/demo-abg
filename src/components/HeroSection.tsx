@@ -16,11 +16,11 @@ interface HeroSectionProps {
 
 export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary, cards }: HeroSectionProps) {
   const particles = useMemo(() =>
-    Array.from({ length: 15 }, (_, i) => ({
+    Array.from({ length: 12 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 4 + 1,
+      size: Math.random() * 3 + 1,
       delay: Math.random() * 3,
       duration: Math.random() * 6 + 4,
     })),
@@ -44,28 +44,29 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
       ))}
 
       {/* Ornamental lines */}
-      <div className="absolute left-8 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold-500/30 to-transparent z-10 hidden lg:block" />
-      <div className="absolute right-8 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold-500/30 to-transparent z-10 hidden lg:block" />
+      <div className="absolute left-8 top-[15%] bottom-[40%] w-px bg-gradient-to-b from-transparent via-gold-500/30 to-transparent z-10 hidden lg:block" />
+      <div className="absolute right-8 top-[15%] bottom-[40%] w-px bg-gradient-to-b from-transparent via-gold-500/30 to-transparent z-10 hidden lg:block" />
 
-      {/* Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 pt-28 pb-16 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-3 mb-6">
+      {/* Content - stacked layout: text above, cards below */}
+      <div className="relative z-20 w-full pt-28 pb-4 flex flex-col min-h-screen">
+        {/* Top: Text section - takes roughly half the hero */}
+        <div className="max-w-7xl mx-auto px-6 w-full flex-1 flex items-center">
+          <div className="w-full max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-3 mb-5"
+            >
               <span className="w-8 h-px bg-gold-500" />
               <span className="text-gold-500 text-sm tracking-[4px] uppercase font-medium">ABG Estudio Jurídico</span>
-            </div>
+            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] text-white mb-6"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] text-white mb-5 max-w-4xl"
               dangerouslySetInnerHTML={{ __html: title }}
             />
 
@@ -73,7 +74,7 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-base sm:text-lg text-gray-300 leading-relaxed mb-8"
+              className="text-base sm:text-lg text-gray-300 leading-relaxed mb-7 max-w-2xl"
             >
               {subtitle}
             </motion.p>
@@ -97,29 +98,38 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
                 {ctaSecondary.text}
               </a>
             </motion.div>
-          </motion.div>
+          </div>
+        </div>
 
-          {/* Right: CardStack */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="hidden lg:block"
-          >
+        {/* Bottom: CardStack - compact, fans out from below */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="w-full px-6"
+        >
+          <div className="max-w-5xl mx-auto">
             <CardStack
               items={cards}
               autoAdvance
               intervalMs={3500}
               pauseOnHover
               showDots={cards.length > 1}
-              cardWidth={420}
-              cardHeight={280}
-              overlap={0.3}
-              spreadDeg={35}
-              depthPx={100}
+              cardWidth={340}
+              cardHeight={220}
+              overlap={0.2}
+              spreadDeg={30}
+              depthPx={70}
+              activeScale={1.05}
+              inactiveScale={0.92}
+              activeLiftPx={-10}
+              tiltXDeg={8}
+              maxVisible={7}
+              springStiffness={300}
+              springDamping={25}
             />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom fade */}
@@ -129,14 +139,14 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        transition={{ delay: 2 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5"
       >
-        <span className="text-[10px] text-gray-500 tracking-[3px] uppercase">Scroll</span>
+        <span className="text-[9px] text-gray-500 tracking-[3px] uppercase">Scroll</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="w-px h-6 bg-gold-500/50"
+          className="w-px h-5 bg-gold-500/50"
         />
       </motion.div>
     </section>
