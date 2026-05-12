@@ -78,6 +78,14 @@ export default function CardStack({
     wrapIndex(initialIndex, len),
   );
   const [hovering, setHovering] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   React.useEffect(() => {
     setActive((a) => wrapIndex(a, len));
@@ -89,8 +97,9 @@ export default function CardStack({
   }, [active, onChangeIndex, items, len]);
 
   const maxOffset = Math.max(0, Math.floor(maxVisible / 2));
+  const effectiveMaxOffset = isMobile ? Math.min(maxOffset, 1) : maxOffset;
   const cardSpacing = Math.max(10, Math.round(cardWidth * (1 - overlap)));
-  const stepDeg = maxOffset > 0 ? spreadDeg / maxOffset : 0;
+  const stepDeg = effectiveMaxOffset > 0 ? spreadDeg / effectiveMaxOffset : 0;
 
   const canGoPrev = loop || active > 0;
   const canGoNext = loop || active < len - 1;
@@ -143,13 +152,13 @@ export default function CardStack({
 
         <div
           className="absolute inset-0 flex items-end justify-center"
-          style={{ perspective: `${perspectivePx}px` }}
+          style={isMobile ? {} : { perspective: `${perspectivePx}px` }}
         >
           <AnimatePresence initial={false}>
             {items.map((item, i) => {
               const off = signedOffset(i, active, len, loop);
               const abs = Math.abs(off);
-              const visible = abs <= maxOffset;
+              const visible = abs <= effectiveMaxOffset;
               if (!visible) return null;
 
               const rotateZ = off * stepDeg;
@@ -186,14 +195,17 @@ export default function CardStack({
                     "will-change-transform select-none",
                     isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer",
                   )}
-                  style={{ width: cardWidth, height: cardHeight, zIndex, transformStyle: "preserve-3d", WebkitFontSmoothing: "antialiased" }}
-                  initial={reduceMotion ? false : { opacity: 0, y: y + 40, x, rotateZ, rotateX, scale }}
-                  animate={{ opacity: 1, x, y: y + lift, rotateZ, rotateX, scale }}
-                  transition={{ type: "spring", stiffness: springStiffness, damping: springDamping }}
+                  style={{ width: cardWidth, height: cardHeight, zIndex, ...(isMobile ? {} : { transformStyle: "preserve-3d" }) }}
+                  initial={reduceMotion || isMobile ? false : { opacity: 0, y: y + 40, x, rotateZ, rotateX, scale }}
+                  animate={{ opacity: 1, x, y: y + lift, rotateZ: isMobile ? off * stepDeg * 0.5 : rotateZ, rotateX: isMobile ? 0 : rotateX, scale }}
+                  transition={isMobile
+                    ? { type: "tween", duration: 0.35, ease: "easeOut" }
+                    : { type: "spring", stiffness: springStiffness, damping: springDamping }
+                  }
                   onClick={() => setActive(i)}
                   {...dragProps}
                 >
-                  <div className="h-full w-full relative" style={{ transform: `translateZ(0) translateZ(${z}px)`, transformStyle: "preserve-3d" }}>
+                  <div className="h-full w-full relative" style={isMobile ? { transform: "translateZ(0)" } : { transform: `translateZ(0) translateZ(${z}px)`, transformStyle: "preserve-3d" }}>
                     {renderCard ? (
                       renderCard(item, { active: isActive })
                     ) : (
