@@ -128,7 +128,7 @@ export default function CardStack({
   if (!len) return null;
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("w-full pointer-events-none", className)}>
       <div
         className="relative w-full flex items-end justify-center"
         style={{ height: Math.max(380, cardHeight + 80) }}
@@ -183,7 +183,7 @@ export default function CardStack({
                   key={item.id}
                   className={cn(
                     "absolute bottom-0 rounded-2xl border border-white/10 overflow-hidden shadow-2xl",
-                    "will-change-transform select-none",
+                    "will-change-transform select-none pointer-events-auto",
                     isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer",
                   )}
                   style={{ width: cardWidth, height: cardHeight, zIndex, transformStyle: "preserve-3d", willChange: "transform" }}
@@ -208,7 +208,7 @@ export default function CardStack({
       </div>
 
       {showDots && items.length > 1 && (
-        <div className="mt-8 flex items-center justify-center gap-3">
+        <div className="mt-8 flex items-center justify-center gap-3 pointer-events-auto">
           {items.map((it, idx) => (
             <button
               key={it.id}
