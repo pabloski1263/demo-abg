@@ -67,6 +67,12 @@ export interface SiteContent {
     email: string;
     password: string;
   };
+  chat: {
+    api_key: string;
+    model: string;
+    enabled: boolean;
+    greeting: string;
+  };
 }
 
 export interface ServiceItem {

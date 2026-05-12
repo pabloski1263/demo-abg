@@ -8,6 +8,7 @@ import TeamSection from "@/components/TeamSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 
 export const dynamic = "force-dynamic";
 
@@ -67,6 +68,7 @@ export default function HomePage() {
         logo={content.site.logo}
         legalName={content.site.legal_name}
       />
+      <ChatWidget />
     </>
   );
 }
