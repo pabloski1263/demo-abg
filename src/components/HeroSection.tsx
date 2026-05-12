@@ -131,7 +131,7 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="w-full px-4 sm:px-6 -mt-12 sm:-mt-6"
+          className="w-full px-4 sm:px-6 -mt-20 sm:-mt-10"
         >
           <div className="max-w-5xl mx-auto">
             <CardStack
