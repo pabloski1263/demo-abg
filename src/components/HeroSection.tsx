@@ -73,7 +73,7 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
       <div className="absolute right-8 top-[15%] bottom-[40%] w-px bg-gradient-to-b from-transparent via-gold-500/30 to-transparent z-10 hidden lg:block" />
 
       {/* Content - stacked layout: text above, cards below */}
-      <div className="relative z-20 w-full pt-16 sm:pt-24 pb-4 flex flex-col">
+      <div className="relative z-20 w-full pt-12 sm:pt-16 pb-4 flex flex-col">
         {/* Top: Text section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <div className="w-full max-w-3xl">
@@ -131,7 +131,7 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="w-full px-4 sm:px-6 -mt-96 sm:-mt-44"
+          className="w-full px-4 sm:px-6 -mt-32 sm:-mt-16"
         >
           <div className="max-w-5xl mx-auto">
             <CardStack
