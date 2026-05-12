@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     const genAI = new GoogleGenerativeAI(content.chat.api_key);
     const model = genAI.getGenerativeModel({
-      model: content.chat?.model || "gemini-2.0-flash-lite",
+      model: content.chat?.model || "gemini-2.5-flash-lite",
       systemInstruction: siteInfo,
     });
 

@@ -246,8 +246,8 @@
   },
   "chat": {
     "api_key": "",
-    "model": "gemini-2.0-flash-lite",
+    "model": "gemini-2.5-flash-lite",
     "enabled": true,
-    "greeting": "¡Hola! Soy el asistente virtual de ABG Abogados. Estoy aquí para resolver tus dudas sobre nuestros servicios legales. ¿En qué puedo ayudarte?"
+    "greeting": "¡Hola! Soy el asistente virtual de ABG Abogados. ¿En qué puedo ayudarte hoy? Puedo contarte sobre nuestros servicios legales, el equipo, nuestra experiencia o agendar una consulta."
   }
 }

@@ -15,12 +15,12 @@ export default function ChatAdminPage() {
 
   if (!content) return <div className="w-6 h-6 border-2 border-gold-500 border-t-transparent rounded-full animate-spin" />;
 
-  const chat = content.chat || { api_key: "", model: "gemini-2.0-flash-lite", enabled: true, greeting: "" };
+  const chat = content.chat || { api_key: "", model: "gemini-2.5-flash-lite", enabled: true, greeting: "" };
 
   const update = (field: string, value: any) => {
     const updated = structuredClone(content);
     if (!updated.chat) {
-      updated.chat = { api_key: "", model: "gemini-2.0-flash-lite", enabled: true, greeting: "" };
+      updated.chat = { api_key: "", model: "gemini-2.5-flash-lite", enabled: true, greeting: "" };
     }
     const keys = field.split(".");
     let obj: any = updated;
@@ -81,9 +81,9 @@ export default function ChatAdminPage() {
                 onChange={(e) => update("chat.model", e.target.value)}
                 className="w-full px-4 py-3 bg-navy-900 border border-white/10 rounded-lg text-white focus:outline-none focus:border-gold-500/50 text-sm"
               >
+                <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash Lite</option>
                 <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash Lite</option>
                 <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
-                <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
               </select>
             </div>
 
