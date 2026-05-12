@@ -4,7 +4,7 @@ services:
     image: demo-abg:latest
     restart: unless-stopped
     ports:
-      - "3010:3010"
+      - "3011:3010"
     environment:
       - PORT=3010
     volumes:
