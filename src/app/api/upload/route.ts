@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const uploadDir = path.join(process.cwd(), "public", "images");
+    const uploadDir = path.join(process.cwd(), "data", "images");
     await mkdir(uploadDir, { recursive: true });
 
     const ext = file.name.split(".").pop() || "jpg";
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     await writeFile(filepath, buffer);
 
-    return NextResponse.json({ url: `/images/${filename}` });
+    return NextResponse.json({ url: `/api/images/${filename}` });
   } catch {
     return NextResponse.json({ error: "Error uploading file" }, { status: 500 });
   }
