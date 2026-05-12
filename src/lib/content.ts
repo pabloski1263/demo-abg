@@ -52,6 +52,7 @@ export interface SiteContent {
     phone: string;
     email: string;
     hours: string;
+    whatsapp: string;
     map_lat: number;
     map_lng: number;
   };

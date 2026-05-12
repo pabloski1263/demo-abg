@@ -57,6 +57,10 @@ export default function ContactAdminPage() {
           <input value={data.contact.email} onChange={(e) => updateField("contact.email", e.target.value)} className="w-full px-4 py-3 bg-navy-900 border border-white/10 rounded-lg text-white focus:outline-none focus:border-gold-500/50 text-sm" />
         </div>
         <div>
+          <label className="block text-sm text-gray-400 mb-1.5">WhatsApp (número para botón en navbar)</label>
+          <input value={data.contact.whatsapp} onChange={(e) => updateField("contact.whatsapp", e.target.value)} className="w-full px-4 py-3 bg-navy-900 border border-white/10 rounded-lg text-white focus:outline-none focus:border-gold-500/50 text-sm" placeholder="+56912345678" />
+        </div>
+        <div>
           <label className="block text-sm text-gray-400 mb-1.5">Horario</label>
           <input value={data.contact.hours} onChange={(e) => updateField("contact.hours", e.target.value)} className="w-full px-4 py-3 bg-navy-900 border border-white/10 rounded-lg text-white focus:outline-none focus:border-gold-500/50 text-sm" />
         </div>

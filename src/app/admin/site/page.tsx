@@ -64,8 +64,11 @@ export default function SiteAdminPage() {
           <input value={site.legal_name} onChange={(e) => update("site.legal_name", e.target.value)} className="w-full px-4 py-3 bg-navy-900 border border-white/10 rounded-lg text-white focus:outline-none focus:border-gold-500/50 text-sm" />
         </div>
         <div>
-          <label className="block text-sm text-gray-400 mb-1.5">Favicon URL</label>
-          <input value={site.favicon} onChange={(e) => update("site.favicon", e.target.value)} className="w-full px-4 py-3 bg-navy-900 border border-white/10 rounded-lg text-white focus:outline-none focus:border-gold-500/50 text-sm" placeholder="/favicon.ico" />
+          <ImageUploader
+            currentImage={site.favicon}
+            onImageChange={(url) => update("site.favicon", url)}
+            label="Favicon (icono de pestaña)"
+          />
         </div>
         <div>
           <ImageUploader

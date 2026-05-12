@@ -17,7 +17,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Navbar siteName={content.site.name} siteSubtitle={content.site.subtitle} logo={content.site.logo} />
+      <Navbar siteName={content.site.name} siteSubtitle={content.site.subtitle} logo={content.site.logo} whatsapp={content.contact.whatsapp} />
       <HeroSection
         title={content.hero.title}
         subtitle={content.hero.subtitle}
