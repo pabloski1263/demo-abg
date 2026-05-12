@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import ImageUploader from "@/components/admin/ImageUploader";
 import type { SiteContent } from "@/lib/content";
 
 export default function AboutAdminPage() {
@@ -47,7 +48,12 @@ export default function AboutAdminPage() {
         </button>
       </div>
 
-      <div className="space-y-4 max-w-2xl">
+      <div className="space-y-4 max-w-2xl mb-8">
+        <ImageUploader
+          currentImage={data.about.image}
+          onImageChange={(url) => updateField("about.image", url)}
+          label="Imagen de la sección"
+        />
         <div>
           <label className="block text-sm text-gray-400 mb-1.5">Título</label>
           <input value={data.about.title} onChange={(e) => updateField("about.title", e.target.value)} className="w-full px-4 py-3 bg-navy-900 border border-white/10 rounded-lg text-white focus:outline-none focus:border-gold-500/50 text-sm" />

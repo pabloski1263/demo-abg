@@ -22,7 +22,7 @@ export default function AdminDashboard() {
   if (!content) return <p className="text-red-400">Error al cargar contenido</p>;
 
   const cards = [
-    { label: "Hero", desc: "Título, subtítulo y CTAs", href: "/admin/hero", count: 3 },
+    { label: "Hero", desc: "Texto, botones y tarjetas animadas", href: "/admin/hero", count: content.hero.cards.length },
     { label: "Servicios", desc: "6 áreas de práctica", href: "/admin/services", count: content.services.items.length },
     { label: "Nosotros", desc: "Historia, misión, visión, valores", href: "/admin/about", count: 4 },
     { label: "Equipo", desc: "Miembros del equipo", href: "/admin/team", count: content.team.members.length },

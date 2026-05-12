@@ -3,6 +3,13 @@ import path from "path";
 
 const DATA_FILE = path.join(process.cwd(), "data", "content.json");
 
+export interface HeroCard {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
 export interface SiteContent {
   site: { name: string; subtitle: string };
   hero: {
@@ -11,6 +18,7 @@ export interface SiteContent {
     cta_primary: { text: string; link: string };
     cta_secondary: { text: string; link: string };
     background_image: string;
+    cards: HeroCard[];
   };
   services: {
     title: string;

@@ -21,6 +21,7 @@ export default function HomePage() {
         ctaPrimary={content.hero.cta_primary}
         ctaSecondary={content.hero.cta_secondary}
         backgroundImage={content.hero.background_image}
+        cards={content.hero.cards}
       />
       <ServicesSection
         title={content.services.title}

@@ -15,7 +15,7 @@ export function createSession(): void {
     httpOnly: true,
     secure: false,
     sameSite: "lax",
-    path: "/admin",
+    path: "/",
     maxAge: 60 * 60 * 24,
   });
 }
@@ -26,7 +26,7 @@ export function destroySession(): void {
     httpOnly: true,
     secure: false,
     sameSite: "lax",
-    path: "/admin",
+    path: "/",
     maxAge: 0,
   });
 }

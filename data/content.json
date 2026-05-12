@@ -14,7 +14,39 @@
       "text": "Conócenos",
       "link": "#nosotros"
     },
-    "background_image": "/images/hero-bg.jpg"
+    "background_image": "/images/hero-bg.jpg",
+    "cards": [
+      {
+        "id": "card1",
+        "title": "Derecho Corporativo",
+        "description": "Estructuración societaria, gobierno corporativo y operaciones de M&A con excelencia técnica.",
+        "image": ""
+      },
+      {
+        "id": "card2",
+        "title": "Derecho Tributario",
+        "description": "Planificación fiscal estratégica y defensa ante el SII con soluciones innovadoras.",
+        "image": ""
+      },
+      {
+        "id": "card3",
+        "title": "Derecho Laboral",
+        "description": "Asesoría integral en relaciones laborales, negociación colectiva y litigios laborales.",
+        "image": ""
+      },
+      {
+        "id": "card4",
+        "title": "Derecho Civil",
+        "description": "Litigios civiles de alta complejidad, contratos y responsabilidad civil profesional.",
+        "image": ""
+      },
+      {
+        "id": "card5",
+        "title": "Derecho Comercial",
+        "description": "Contratos comerciales, propiedad intelectual, competencia desleal y arbitraje.",
+        "image": ""
+      }
+    ]
   },
   "services": {
     "title": "Áreas de Práctica",
