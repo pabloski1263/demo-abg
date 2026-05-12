@@ -23,8 +23,8 @@ export default function TestimonialsSection({ title, items }: TestimonialsSectio
   const prev = () => setCurrent((c) => (c - 1 + items.length) % items.length);
 
   return (
-    <section className="relative py-28">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section className="relative py-16 sm:py-28">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export default function TestimonialsSection({ title, items }: TestimonialsSectio
           transition={{ duration: 0.6 }}
         >
           <span className="text-gold-500 text-sm tracking-[4px] uppercase font-medium mb-4 block">Testimonios</span>
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-16">{title}</h2>
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-12 sm:mb-16">{title}</h2>
         </motion.div>
 
         <div className="relative min-h-[200px]">
@@ -45,7 +45,7 @@ export default function TestimonialsSection({ title, items }: TestimonialsSectio
               transition={{ duration: 0.4 }}
             >
               {/* Quote icon */}
-              <svg className="w-12 h-12 text-gold-500/30 mx-auto mb-6" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="w-10 h-10 sm:w-12 sm:h-12 text-gold-500/30 mx-auto mb-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11H10v10H0z" />
               </svg>
 

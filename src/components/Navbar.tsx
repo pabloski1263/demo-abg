@@ -3,6 +3,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+interface NavbarProps {
+  siteName: string;
+  siteSubtitle: string;
+  logo: string;
+}
+
 const navItems = [
   { label: "Inicio", href: "#hero" },
   { label: "Servicios", href: "#servicios" },
@@ -11,7 +17,7 @@ const navItems = [
   { label: "Contacto", href: "#contacto" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ siteName, siteSubtitle, logo }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -21,6 +27,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const initials = siteName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -29,20 +37,24 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-gold-500 rounded flex items-center justify-center group-hover:bg-gold-400 transition-colors">
-            <span className="text-navy-900 font-serif font-bold text-lg">ABG</span>
-          </div>
+        <a href="#hero" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+          {logo ? (
+            <img src={logo} alt={siteName} className="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded" />
+          ) : (
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gold-500 rounded flex items-center justify-center group-hover:bg-gold-400 transition-colors">
+              <span className="text-navy-900 font-serif font-bold text-sm sm:text-lg">{initials}</span>
+            </div>
+          )}
           <div className="hidden sm:block">
-            <p className="text-sm font-serif font-semibold text-white leading-tight">ABG Abogados</p>
-            <p className="text-[8px] text-gold-500 tracking-[3px] uppercase">Estudio Jurídico</p>
+            <p className="text-sm font-serif font-semibold text-white leading-tight">{siteName}</p>
+            <p className="text-[8px] text-gold-500 tracking-[3px] uppercase">{siteSubtitle}</p>
           </div>
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -54,7 +66,7 @@ export default function Navbar() {
           ))}
           <a
             href="#contacto"
-            className="px-5 py-2.5 bg-gold-500 text-navy-900 text-sm font-medium rounded hover:bg-gold-400 transition-all duration-300"
+            className="px-4 lg:px-5 py-2.5 bg-gold-500 text-navy-900 text-sm font-medium rounded hover:bg-gold-400 transition-all duration-300"
           >
             Solicitar Asesoría
           </a>
@@ -63,10 +75,10 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden p-2 text-white"
+          className="md:hidden p-2 text-white -mr-2"
           aria-label="Menú"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {mobileOpen ? (
               <path d="M6 18L18 6M6 6l12 12" />
             ) : (
@@ -83,15 +95,15 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-navy-800/95 backdrop-blur-xl border-t border-white/5"
+            className="md:hidden bg-navy-900/98 backdrop-blur-xl border-t border-white/5"
           >
-            <div className="px-6 py-4 space-y-3">
+            <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block text-sm text-gray-300 hover:text-gold-500 transition-colors py-2"
+                  className="block text-sm text-gray-300 hover:text-gold-500 transition-colors py-2.5 px-3 rounded-lg hover:bg-white/5"
                 >
                   {item.label}
                 </a>
@@ -99,7 +111,7 @@ export default function Navbar() {
               <a
                 href="#contacto"
                 onClick={() => setMobileOpen(false)}
-                className="block text-center px-5 py-3 bg-gold-500 text-navy-900 text-sm font-medium rounded"
+                className="block text-center px-5 py-3 bg-gold-500 text-navy-900 text-sm font-medium rounded-lg mt-3"
               >
                 Solicitar Asesoría
               </a>

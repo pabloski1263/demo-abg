@@ -11,7 +11,7 @@ export interface HeroCard {
 }
 
 export interface SiteContent {
-  site: { name: string; subtitle: string };
+  site: { name: string; subtitle: string; logo: string; favicon: string; legal_name: string };
   hero: {
     title: string;
     subtitle: string;

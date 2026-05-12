@@ -44,9 +44,9 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({ title, subtitle, items }: ServicesSectionProps) {
   return (
-    <section id="servicios" className="relative py-28 bg-navy-800/50">
+    <section id="servicios" className="relative py-16 sm:py-28 bg-navy-800/50">
       {/* Section header */}
-      <div className="max-w-7xl mx-auto px-6 mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,8 +60,8 @@ export default function ServicesSection({ title, subtitle, items }: ServicesSect
       </div>
 
       {/* Services grid */}
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {items.map((service, i) => (
             <motion.div
               key={service.id}
@@ -69,7 +69,7 @@ export default function ServicesSection({ title, subtitle, items }: ServicesSect
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative bg-navy-900/60 border border-white/5 rounded-2xl p-8 hover:border-gold-500/30 transition-all duration-500"
+              className="group relative bg-navy-900/60 border border-white/5 rounded-2xl p-6 sm:p-8 hover:border-gold-500/30 transition-all duration-500"
             >
               {/* Hover gradient */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

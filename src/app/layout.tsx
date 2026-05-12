@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { getContent } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "ABG Abogados | Estudio Jurídico",
-  description: "Asesoría legal de excelencia con más de 25 años de experiencia. Derecho Corporativo, Tributario, Laboral, Civil, Comercial y Regulatorio.",
-  icons: { icon: "/favicon.ico" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  try {
+    const content = getContent();
+    return {
+      title: `${content.site.name} | ${content.site.subtitle}`,
+      description: content.hero.subtitle || "Asesoría legal de excelencia.",
+      icons: content.site.favicon ? { icon: content.site.favicon } : { icon: "/favicon.ico" },
+    };
+  } catch {
+    return {
+      title: "ABG Abogados | Estudio Jurídico",
+      description: "Asesoría legal de excelencia.",
+      icons: { icon: "/favicon.ico" },
+    };
+  }
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -18,15 +18,15 @@ interface AboutSectionProps {
 
 export default function AboutSection({ title, description, mission, vision, values }: AboutSectionProps) {
   return (
-    <section id="nosotros" className="relative py-28">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="nosotros" className="relative py-16 sm:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16"
         >
           <span className="text-gold-500 text-sm tracking-[4px] uppercase font-medium mb-4 block">Nosotros</span>
           <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-6">{title}</h2>
@@ -34,13 +34,13 @@ export default function AboutSection({ title, description, mission, vision, valu
         </motion.div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-navy-800/50 border border-white/5 rounded-2xl p-8"
+            className="bg-navy-800/50 border border-white/5 rounded-2xl p-6 sm:p-8"
           >
             <h3 className="text-xl font-serif font-semibold text-gold-500 mb-3">Misión</h3>
             <p className="text-gray-300 leading-relaxed">{mission}</p>
@@ -50,7 +50,7 @@ export default function AboutSection({ title, description, mission, vision, valu
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-navy-800/50 border border-white/5 rounded-2xl p-8"
+            className="bg-navy-800/50 border border-white/5 rounded-2xl p-6 sm:p-8"
           >
             <h3 className="text-xl font-serif font-semibold text-gold-500 mb-3">Visión</h3>
             <p className="text-gray-300 leading-relaxed">{vision}</p>

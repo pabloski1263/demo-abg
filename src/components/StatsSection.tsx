@@ -57,12 +57,12 @@ function AnimatedCounter({ value, suffix, label }: StatItem) {
 
 export default function StatsSection({ items }: StatsSectionProps) {
   return (
-    <section className="relative py-20 border-y border-white/5">
+    <section className="relative py-16 sm:py-20 border-y border-white/5">
       {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-grid opacity-30" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
           {items.map((stat, i) => (
             <motion.div
               key={stat.label}

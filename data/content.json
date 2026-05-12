@@ -1,7 +1,10 @@
 {
   "site": {
     "name": "ABG Abogados",
-    "subtitle": "ABG Estudio Jurídico"
+    "subtitle": "ABG Estudio Jurídico",
+    "logo": "",
+    "favicon": "",
+    "legal_name": "ABG Abogados"
   },
   "hero": {
     "title": "Excelencia Jurídica,<br/>Compromiso Absoluto",

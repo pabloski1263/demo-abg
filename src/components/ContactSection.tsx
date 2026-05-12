@@ -13,21 +13,21 @@ interface ContactSectionProps {
 
 export default function ContactSection({ title, subtitle, address, phone, email, hours }: ContactSectionProps) {
   return (
-    <section id="contacto" className="relative py-28 bg-navy-800/30">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="contacto" className="relative py-16 sm:py-28 bg-navy-800/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16"
         >
           <span className="text-gold-500 text-sm tracking-[4px] uppercase font-medium mb-4 block">Contacto</span>
           <h2 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-6">{title}</h2>
           <p className="text-gray-400 text-lg max-w-2xl">{subtitle}</p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}

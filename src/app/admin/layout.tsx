@@ -54,6 +54,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <nav className="space-y-1">
           {[
             { label: "Dashboard", href: "/admin" },
+            { label: "Sitio", href: "/admin/site" },
             { label: "Hero", href: "/admin/hero" },
             { label: "Servicios", href: "/admin/services" },
             { label: "Nosotros", href: "/admin/about" },

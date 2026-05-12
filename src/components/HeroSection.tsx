@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import CardStack from "./CardStack";
 import type { HeroCard } from "@/lib/content";
 
@@ -15,6 +15,31 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary, cards }: HeroSectionProps) {
+  const [cardWidth, setCardWidth] = useState(340);
+  const [cardHeight, setCardHeight] = useState(220);
+
+  useEffect(() => {
+    const updateSize = () => {
+      const w = window.innerWidth;
+      if (w < 480) {
+        setCardWidth(240);
+        setCardHeight(170);
+      } else if (w < 640) {
+        setCardWidth(280);
+        setCardHeight(190);
+      } else if (w < 1024) {
+        setCardWidth(320);
+        setCardHeight(210);
+      } else {
+        setCardWidth(340);
+        setCardHeight(220);
+      }
+    };
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
   const particles = useMemo(() =>
     Array.from({ length: 12 }, (_, i) => ({
       id: i,
@@ -50,7 +75,7 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
       {/* Content - stacked layout: text above, cards below */}
       <div className="relative z-20 w-full pt-24 pb-4 flex flex-col">
         {/* Top: Text section */}
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
           <div className="w-full max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -106,27 +131,27 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="w-full px-6 mt-4"
+          className="w-full px-4 sm:px-6 mt-4"
         >
           <div className="max-w-5xl mx-auto">
             <CardStack
               items={cards}
               autoAdvance
-              intervalMs={3500}
+              intervalMs={4000}
               pauseOnHover
               showDots={cards.length > 1}
-              cardWidth={340}
-              cardHeight={220}
+              cardWidth={cardWidth}
+              cardHeight={cardHeight}
               overlap={0.2}
-              spreadDeg={30}
-              depthPx={70}
-              activeScale={1.05}
-              inactiveScale={0.92}
-              activeLiftPx={-10}
-              tiltXDeg={8}
+              spreadDeg={24}
+              depthPx={50}
+              activeScale={1.04}
+              inactiveScale={0.93}
+              activeLiftPx={-8}
+              tiltXDeg={6}
               maxVisible={7}
-              springStiffness={300}
-              springDamping={25}
+              springStiffness={350}
+              springDamping={30}
             />
           </div>
         </motion.div>

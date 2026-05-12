@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <>
-      <Navbar />
+      <Navbar siteName={content.site.name} siteSubtitle={content.site.subtitle} logo={content.site.logo} />
       <HeroSection
         title={content.hero.title}
         subtitle={content.hero.subtitle}
@@ -62,6 +62,10 @@ export default function HomePage() {
         email={content.contact.email}
         address={content.contact.address}
         social={content.footer.social}
+        siteName={content.site.name}
+        siteSubtitle={content.site.subtitle}
+        logo={content.site.logo}
+        legalName={content.site.legal_name}
       />
     </>
   );

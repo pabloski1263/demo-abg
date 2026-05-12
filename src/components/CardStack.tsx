@@ -186,14 +186,14 @@ export default function CardStack({
                     "will-change-transform select-none",
                     isActive ? "cursor-grab active:cursor-grabbing" : "cursor-pointer",
                   )}
-                  style={{ width: cardWidth, height: cardHeight, zIndex, transformStyle: "preserve-3d" }}
+                  style={{ width: cardWidth, height: cardHeight, zIndex, transformStyle: "preserve-3d", WebkitFontSmoothing: "antialiased" }}
                   initial={reduceMotion ? false : { opacity: 0, y: y + 40, x, rotateZ, rotateX, scale }}
                   animate={{ opacity: 1, x, y: y + lift, rotateZ, rotateX, scale }}
                   transition={{ type: "spring", stiffness: springStiffness, damping: springDamping }}
                   onClick={() => setActive(i)}
                   {...dragProps}
                 >
-                  <div className="h-full w-full relative" style={{ transform: `translateZ(${z}px)`, transformStyle: "preserve-3d" }}>
+                  <div className="h-full w-full relative" style={{ transform: `translateZ(0) translateZ(${z}px)`, transformStyle: "preserve-3d" }}>
                     {renderCard ? (
                       renderCard(item, { active: isActive })
                     ) : (
