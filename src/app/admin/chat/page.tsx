@@ -15,13 +15,19 @@ export default function ChatAdminPage() {
 
   if (!content) return <div className="w-6 h-6 border-2 border-gold-500 border-t-transparent rounded-full animate-spin" />;
 
-  const chat = content.chat;
+  const chat = content.chat || { api_key: "", model: "gemini-2.0-flash-lite", enabled: true, greeting: "" };
 
   const update = (field: string, value: any) => {
     const updated = structuredClone(content);
+    if (!updated.chat) {
+      updated.chat = { api_key: "", model: "gemini-2.0-flash-lite", enabled: true, greeting: "" };
+    }
     const keys = field.split(".");
     let obj: any = updated;
-    for (let i = 0; i < keys.length - 1; i++) obj = obj[keys[i]];
+    for (let i = 0; i < keys.length - 1; i++) {
+      if (obj[keys[i]] === undefined) obj[keys[i]] = {};
+      obj = obj[keys[i]];
+    }
     obj[keys[keys.length - 1]] = value;
     setContent(updated);
   };

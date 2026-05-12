@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
     const content = getContent();
 
-    if (!content.chat.api_key) {
+    if (!content.chat?.api_key) {
       return Response.json({ error: "Chat no configurado" }, { status: 503 });
     }
 
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
     const genAI = new GoogleGenerativeAI(content.chat.api_key);
     const model = genAI.getGenerativeModel({
-      model: content.chat.model || "gemini-2.0-flash-lite",
+      model: content.chat?.model || "gemini-2.0-flash-lite",
       systemInstruction: siteInfo,
     });
 
