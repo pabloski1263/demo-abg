@@ -8,6 +8,18 @@ interface Message {
   text: string;
 }
 
+function ChatMessage({ text }: { text: string }) {
+  const html = text
+    .replace(/\*\*\*(.+?)\*\*\*/g, "<strong><em>$1</em></strong>")
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/__(.+?)__/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/_(.+?)_/g, "<em>$1</em>")
+    .replace(/\n/g, "<br/>");
+
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -201,7 +213,7 @@ export default function ChatWidget() {
                         : "bg-navy-800 text-gray-200 rounded-tl-sm"
                     }`}
                   >
-                    {msg.text || (
+                    {msg.text ? <ChatMessage text={msg.text} /> : (
                       <span className="inline-flex gap-1">
                         <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                         <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
