@@ -77,7 +77,24 @@ export default function AboutSection({ title, description, mission, vision, valu
               className="text-center p-6"
             >
               <div className="w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center mx-auto mb-4">
-                <span className="text-gold-500 font-serif font-bold">{i + 1}</span>
+                {i === 0 ? (
+                  <svg className="w-5 h-5 text-gold-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ) : i === 1 ? (
+                  <svg className="w-5 h-5 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                ) : i === 2 ? (
+                  <svg className="w-5 h-5 text-gold-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2l.9 6.3 4.6-4.5-2.8 5.8 6.3.9-5.3 4.1 1.9 6.9L12 17.8l-5.6 3.4 1.9-6.9L3 10.5l6.3-.9L6.5 3.8l4.6 4.5L12 2z" />
+                    <circle cx="12" cy="12" r="3" fill="currentColor" />
+                  </svg>
+                )}
               </div>
               <h4 className="text-lg font-serif font-semibold text-white mb-2">{value.title}</h4>
               <p className="text-sm text-gray-400 leading-relaxed">{value.description}</p>
