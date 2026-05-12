@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { adminFetch } from "@/lib/admin-fetch";
 import type { SiteContent } from "@/lib/content";
 
 interface Field {
@@ -45,7 +46,7 @@ export default function AdminEditor({ title, content, fields, onSave }: AdminEdi
   const handleSave = async () => {
     setSaving(true);
     try {
-      const res = await fetch("/api/content", {
+      const res = await adminFetch("/api/content", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

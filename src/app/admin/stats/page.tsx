@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { adminFetch } from "@/lib/admin-fetch";
 import type { SiteContent } from "@/lib/content";
 
 export default function StatsAdminPage() {
   const [content, setContent] = useState<SiteContent | null>(null);
 
   useEffect(() => {
-    fetch("/api/content").then((r) => r.json()).then(setContent);
+    adminFetch("/api/content").then((r) => r.json()).then(setContent);
   }, []);
 
   if (!content) return <div className="w-6 h-6 border-2 border-gold-500 border-t-transparent rounded-full animate-spin" />;
@@ -23,7 +24,7 @@ export default function StatsAdminPage() {
 
   const handleSave = async () => {
     try {
-      const res = await fetch("/api/content", {
+      const res = await adminFetch("/api/content", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(content),

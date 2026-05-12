@@ -9,6 +9,8 @@ services:
       - PORT=3010
     volumes:
       - demo-abg-data:/app/data
+      - demo-abg-images:/app/public/images
 
 volumes:
   demo-abg-data:
+  demo-abg-images:

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { adminFetch } from "@/lib/admin-fetch";
 import type { SiteContent } from "@/lib/content";
 
 export default function AdminDashboard() {
@@ -8,7 +9,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/content")
+    adminFetch("/api/content")
       .then((r) => r.json())
       .then((data) => setContent(data))
       .catch(console.error)

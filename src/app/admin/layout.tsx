@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
+import { adminFetch } from "@/lib/admin-fetch";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -14,7 +15,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       setChecking(false);
       return;
     }
-    fetch("/api/content")
+    adminFetch("/api/content")
       .then((r) => {
         if (r.status === 401) {
           router.push("/admin/login");

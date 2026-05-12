@@ -48,15 +48,15 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
       <div className="absolute right-8 top-[15%] bottom-[40%] w-px bg-gradient-to-b from-transparent via-gold-500/30 to-transparent z-10 hidden lg:block" />
 
       {/* Content - stacked layout: text above, cards below */}
-      <div className="relative z-20 w-full pt-28 pb-4 flex flex-col min-h-screen">
-        {/* Top: Text section - takes roughly half the hero */}
-        <div className="max-w-7xl mx-auto px-6 w-full flex-1 flex items-center">
+      <div className="relative z-20 w-full pt-24 pb-4 flex flex-col">
+        {/* Top: Text section */}
+        <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="w-full max-w-3xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 mb-5"
+              className="inline-flex items-center gap-3 mb-4"
             >
               <span className="w-8 h-px bg-gold-500" />
               <span className="text-gold-500 text-sm tracking-[4px] uppercase font-medium">ABG Estudio Jurídico</span>
@@ -66,7 +66,7 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] text-white mb-5 max-w-4xl"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-[1.1] text-white mb-4 max-w-4xl"
               dangerouslySetInnerHTML={{ __html: title }}
             />
 
@@ -74,7 +74,7 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-base sm:text-lg text-gray-300 leading-relaxed mb-7 max-w-2xl"
+              className="text-base sm:text-lg text-gray-300 leading-relaxed mb-6 max-w-2xl"
             >
               {subtitle}
             </motion.p>
@@ -103,10 +103,10 @@ export default function HeroSection({ title, subtitle, ctaPrimary, ctaSecondary,
 
         {/* Bottom: CardStack - compact, fans out from below */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="w-full px-6"
+          transition={{ duration: 1, delay: 0.3 }}
+          className="w-full px-6 mt-4"
         >
           <div className="max-w-5xl mx-auto">
             <CardStack

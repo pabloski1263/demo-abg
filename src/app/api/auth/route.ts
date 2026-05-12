@@ -10,8 +10,8 @@ export async function POST(req: NextRequest) {
     }
 
     if (validateCredentials(email, password)) {
-      createSession();
-      return NextResponse.json({ success: true });
+      const token = createSession();
+      return NextResponse.json({ success: true, token });
     }
 
     return NextResponse.json({ error: "Credenciales inválidas" }, { status: 401 });

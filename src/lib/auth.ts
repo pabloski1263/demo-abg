@@ -2,33 +2,70 @@ import { cookies } from "next/headers";
 import { getContent } from "./content";
 
 const AUTH_COOKIE = "demo-abg-auth";
+const AUTH_TOKEN = "demo-abg-token";
 
-export function verifyAuth(): boolean {
-  const cookieStore = cookies();
-  const token = cookieStore.get(AUTH_COOKIE)?.value;
-  return token === "authenticated";
+function generateToken(): string {
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  for (let i = 0; i < 32; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
 }
 
-export function createSession(): void {
+// Fijamos un token constante en build time (no cambia entre requests)
+let SESSION_TOKEN: string | null = null;
+
+export function verifyAuth(req?: Request): boolean {
+  // 1) Check header first (most reliable)
+  if (req) {
+    const authHeader = req.headers.get("authorization");
+    if (authHeader === `Bearer ${SESSION_TOKEN}`) return true;
+  }
+
+  // 2) Fallback: cookie
+  try {
+    const cookieStore = cookies();
+    const token = cookieStore.get(AUTH_COOKIE)?.value;
+    if (token === SESSION_TOKEN) return true;
+  } catch {
+    // cookies() can throw in certain contexts
+  }
+
+  return false;
+}
+
+export function createSession(): string {
+  if (!SESSION_TOKEN) {
+    SESSION_TOKEN = generateToken();
+  }
+
   const cookieStore = cookies();
-  cookieStore.set(AUTH_COOKIE, "authenticated", {
+  cookieStore.set(AUTH_COOKIE, SESSION_TOKEN, {
     httpOnly: true,
     secure: false,
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24,
+    maxAge: 60 * 60 * 24 * 7, // 7 days
   });
+
+  return SESSION_TOKEN;
 }
 
 export function destroySession(): void {
-  const cookieStore = cookies();
-  cookieStore.set(AUTH_COOKIE, "", {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 0,
-  });
+  SESSION_TOKEN = null;
+  try {
+    const cookieStore = cookies();
+    cookieStore.set(AUTH_COOKIE, "", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 0,
+    });
+  } catch {
+    // ignore
+  }
 }
 
 export function validateCredentials(email: string, password: string): boolean {

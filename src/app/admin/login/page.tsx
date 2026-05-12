@@ -20,6 +20,8 @@ export default function AdminLoginPage() {
         body: JSON.stringify({ email, password }),
       });
       if (res.ok) {
+        const data = await res.json();
+        if (data.token) sessionStorage.setItem("abg_token", data.token);
         router.push("/admin");
       } else {
         const data = await res.json();

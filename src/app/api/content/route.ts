@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { getContent, saveContent } from "@/lib/content";
 import { verifyAuth } from "@/lib/auth";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const content = getContent();
   return NextResponse.json(content);
 }
 
 export async function PUT(req: NextRequest) {
-  if (!verifyAuth()) {
+  if (!verifyAuth(req)) {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
   }
 
