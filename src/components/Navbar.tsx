@@ -38,7 +38,7 @@ export default function Navbar({ siteName, siteSubtitle, logo, whatsapp }: Navba
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        scrolled || mobileOpen
           ? "bg-navy-900/95 backdrop-blur-xl shadow-lg shadow-black/20 border-b border-white/5"
           : "bg-transparent"
       }`}
@@ -114,7 +114,7 @@ export default function Navbar({ siteName, siteSubtitle, logo, whatsapp }: Navba
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-navy-900/98 backdrop-blur-xl border-t border-white/5"
+            className="md:hidden bg-navy-900 border-t border-white/5"
           >
             <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => (
